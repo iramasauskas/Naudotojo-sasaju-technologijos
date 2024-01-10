@@ -1,0 +1,90 @@
+/* Bendri stiliai */
+.task-list-container,
+.statistics-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+h2 {
+  color: #333;
+  text-align: center;
+}
+
+/* Užduočių sąrašo stiliai */
+.task-list {
+  list-style: none;
+  padding: 0;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.task-content {
+  flex-grow: 1;
+}
+
+.view-mode,
+.edit-mode {
+  display: flex;
+  align-items: center;
+}
+
+.buttons {
+  margin-top: 10px;
+}
+
+/* Mygtukų stiliai */
+button {
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.save {
+  background-color: #28a745;
+  color: white;
+}
+
+.cancel {
+  background-color: #dc3545;
+  color: white;
+  margin-left: 10px;
+}
+
+.edit,
+.delete {
+  background-color: #007bff;
+  color: white;
+  margin-right: 5px;
+}
+
+/* Statistikos stiliai */
+.task-count-statistics {
+  margin-top: 20px;
+}
+
+.task-count-item {
+  list-style: none;
+  margin-bottom: 5px;
+}
+
+/* Responsyvumo stiliai */
+@media (max-width: 600px) {
+  .task-list-container,
+  .statistics-container {
+    padding: 10px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+}

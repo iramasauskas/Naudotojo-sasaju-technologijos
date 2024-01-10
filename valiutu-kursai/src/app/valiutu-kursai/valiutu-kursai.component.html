@@ -1,0 +1,26 @@
+<div class="currency-converter">
+  <div *ngIf="isKraunama" class="loading-section">
+    Kraunama...
+  </div>
+  <div *ngIf="klaida" class="error-section">
+    {{ klaida }}
+  </div>
+  <div *ngIf="!isKraunama && !klaida" class="converter-section">
+    <label for="fromCurrency">Pasirinkite valiutą iš:</label>
+    <select id="fromCurrency" [(ngModel)]="selectedFromCurrency">
+      <option *ngFor="let valiuta of valiutos" [value]="valiuta">{{ valiuta }}</option>
+    </select>
+
+    <label for="toCurrency">Pasirinkite valiutą į:</label>
+    <select id="toCurrency" [(ngModel)]="selectedToCurrency">
+      <option *ngFor="let valiuta of valiutos" [value]="valiuta">{{ valiuta }}</option>
+    </select>
+
+    <button (click)="gautiKursa()" [disabled]="!selectedFromCurrency || !selectedToCurrency">Gauti valiutos kursą</button>
+
+    <div *ngIf="valiutosKursas" class="result-section">
+      <span class="conversion">{{ selectedFromCurrency }} -> {{ selectedToCurrency }}: </span>
+      <span class="rate">{{ valiutosKursas }}</span>
+    </div>
+  </div>
+</div>

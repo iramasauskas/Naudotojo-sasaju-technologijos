@@ -1,0 +1,47 @@
+<div class="container mt-4">
+  <h2>Lietaus rezervuaro skaičiuoklė</h2>
+  <div class="row">
+    <div class="col-md-6">
+      <form>
+        <!-- Rezervuaro talpos įvedimo laukas -->
+        <div class="form-group">
+          <label for="reservoirCapacity">Rezervuaro talpa (l)</label>
+          <input type="number" class="form-control" id="reservoirCapacity" [(ngModel)]="reservoirCapacity" name="reservoirCapacity" (ngModelChange)="onInputChange()" min="0">
+        </div>
+        <!-- Rezervuaro pildymo greičio įvedimo laukas -->
+        <div class="form-group">
+          <label for="fillingRate">Rezervuaro pildymo greitis (l/val.)</label>
+          <input type="number" class="form-control" id="fillingRate" [(ngModel)]="fillingRate" name="fillingRate" (ngModelChange)="onInputChange()" min="0">
+        </div>
+        <!-- Laiko įvedimo laukas -->
+        <div class="form-group">
+          <label for="fillingTime">Laikas kiek rezervuaras bus pildomas (val.)</label>
+          <input type="number" class="form-control" id="fillingTime" [(ngModel)]="fillingTime" name="fillingTime" (ngModelChange)="onInputChange()" min="0">
+        </div>
+      </form>
+
+      <!-- Papildoma vieta tarp įvedimo laukų ir mygtuko -->
+      <div class="extra-space"></div>
+
+      <!-- Skaičiavimo mygtukas -->
+      <button type="button" class="btn btn-primary" (click)="calculatePercentage()" [disabled]="isDisabled">Skaičiuoti</button>
+
+      <!-- Pranešimas, rodomas, kol mygtukas nepaspaustas -->
+      <p class="text-muted mt-3" *ngIf="!isButtonClicked">
+        Įveskite atitinkamas reikšmes, kad sužinotumėte kiek procentų yra pripildytas lietaus rezervuaras.
+      </p>
+    </div>
+
+    <!-- Rezultatų rodomo bloko pusė -->
+    <div class="col-md-6">
+      <div class="mt-3">
+        <!-- Rezultatų pranešimas, rodomas po skaičiavimo -->
+        <div class="alert alert-success" *ngIf="isButtonClicked">
+          <p>Rezervuaro pripildymo procentas: {{ reservoirPercentage.toFixed(2) }}%</p>
+        </div>
+      </div>
+      <!-- Kritinių arba perpildymo pranešimas -->
+      <div class="alert" [ngClass]="messageClass" *ngIf="message">{{ message }}</div>
+    </div>
+  </div>
+</div>

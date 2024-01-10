@@ -1,0 +1,54 @@
+<h2>Registracijos</h2>
+<ul class="registrations-list">
+  <li *ngFor="let registration of registrations; let i = index" class="registration-item">
+    <div class="registration-info">
+    </div>
+    <div *ngIf="editModeIndex !== i; else displayMode">
+      <!-- Display mode -->
+      <div>
+        <p><strong>Vaiko vardas:</strong> {{ registration.vaikoVardas }}</p>
+        <p><strong>Vaiko pavardė:</strong> {{ registration.vaikoPavarde }}</p>
+        <p><strong>Gimimo Metai:</strong> {{ registration.gimimoMetai }}</p>
+        <p><strong>Lytis:</strong> {{ registration.lytis }}</p>
+        <p><strong>El. paštas:</strong> {{ registration.elPastas }}</p>
+        <p><strong>Telefonas:</strong> {{ registration.telefonas }}</p>
+        <p><strong>Klasė:</strong> {{ registration.klase }}</p>
+        <!-- Add more details as needed -->
+        <!-- Edit button -->
+        <button (click)="editRegistration(i)">Redaguoti</button>
+        <button (click)="deleteRegistration(i)">Ištrinti</button>
+      </div>
+    </div>
+    <ng-template #displayMode>
+      <!-- Edit mode -->
+      <form (submit)="saveRegistration(i)">
+        <!-- Editable fields -->
+        <p><strong>Vaiko vardas:</strong>
+          <input type="text" [(ngModel)]="editedRegistration.vaikoVardas" name="vaikoVardas">
+        </p>
+        <p><strong>Vaiko pavardė:</strong>
+          <input type="text" [(ngModel)]="editedRegistration.vaikoPavarde" name="vaikoPavarde">
+        </p>
+        <p><strong>Gimimo Metai:</strong>
+          <input type="text" [(ngModel)]="editedRegistration.gimimoMetai" name="gimimoMetai">
+        </p>
+          <p><strong>Lytis:</strong>
+          <input type="radio" [(ngModel)]="editedRegistration.lytis" name="lytis" value="vyras" [checked]="editedRegistration.lytis === 'vyras'"> Vyras
+          <input type="radio" [(ngModel)]="editedRegistration.lytis" name="lytis" value="moteris" [checked]="editedRegistration.lytis === 'moteris'"> Moteris
+        </p>
+        <p><strong>El. paštas:</strong>
+          <input type="text" [(ngModel)]="editedRegistration.elPastas" name="elPastas">
+        </p>
+        <p><strong>Telefonas:</strong>
+          <input type="text" [(ngModel)]="editedRegistration.telefonas" name="telefonas">
+        </p>
+        <p><strong>Klasė:</strong>
+          <input type="text" [(ngModel)]="editedRegistration.klase" name="klase">
+        </p>
+        <!-- Save and Cancel buttons -->
+        <button type="submit">Išsaugoti</button>
+        <button type="button" (click)="cancelEdit()">Atšaukti</button>
+      </form>
+    </ng-template>
+  </li>
+</ul>

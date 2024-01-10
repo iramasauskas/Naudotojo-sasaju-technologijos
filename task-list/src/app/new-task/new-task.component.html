@@ -1,0 +1,19 @@
+<div class="task-form-container">
+  <h3>Pridėti naują užduotį</h3>
+  <form (submit)="addTask()" class="task-form">
+    <div class="form-group">
+      <label for="taskName">Užduoties pavadinimas:</label>
+      <input type="text" id="taskName" [(ngModel)]="newTaskName" name="taskName" required>
+    </div>
+    <div class="form-group">
+      <label for="taskType">Užduoties tipas:</label>
+      <select id="taskType" [(ngModel)]="newTaskType" name="taskType">
+        <option value="Skubus">Skubus</option>
+        <option value="Rutininis">Rutininis</option>
+        <option value="Neskubus">Neskubus</option>
+        <option value="Ypač skubus">Ypač skubus</option>
+      </select>
+    </div>
+    <button type="submit">Pridėti užduotį</button>
+  </form>
+</div>

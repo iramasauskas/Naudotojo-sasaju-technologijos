@@ -1,0 +1,10 @@
+/* Stilius pranešimų blokui su klase .alert */
+.alert {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.extra-space {
+  margin-top: 20px;
+}

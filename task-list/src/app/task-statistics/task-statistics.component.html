@@ -1,0 +1,11 @@
+<div class="statistics-container">
+  <h2>Užduočių statistika</h2>
+  <div class="task-count-statistics">
+    <ul>
+      <li *ngFor="let key of taskCountKeys" class="task-count-item">
+        <span class="count-key">{{ key }}:</span>
+        <span class="count-value">{{ taskCounts[key] }}</span>
+      </li>
+    </ul>
+  </div>
+</div>

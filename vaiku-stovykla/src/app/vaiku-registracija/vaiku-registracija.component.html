@@ -1,0 +1,115 @@
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="registration-form">
+  <h2>Vasaros Stovyklos Registracija</h2>
+
+  <!-- Vaiko Vardas -->
+  <div class="form-group">
+    <label for="vaikoVardas">Vaiko Vardas:</label>
+    <input type="text" id="vaikoVardas" formControlName="vaikoVardas">
+    <div *ngIf="registrationForm.get('vaikoVardas')?.hasError('required') && registrationForm.get('vaikoVardas')?.touched">
+      Vardas yra privalomas.
+    </div>
+    <div *ngIf="registrationForm.get('vaikoVardas')?.hasError('minlength') && registrationForm.get('vaikoVardas')?.touched">
+      Vardas turi būti ne trumpesnis nei 3 simboliai.
+    </div>
+    <div *ngIf="registrationForm.get('vaikoVardas')?.hasError('maxlength') && registrationForm.get('vaikoVardas')?.touched">
+      Vardas turi būti ne ilgesnis nei 15 simbolių.
+    </div>
+    <div *ngIf="registrationForm.get('vaikoVardas')?.hasError('pattern') && registrationForm.get('vaikoVardas')?.touched">
+      Vardas turi būti sudarytas tik iš raidžių.
+    </div>
+  </div>
+
+  <!-- Vaiko Pavardė -->
+  <div class="form-group">
+    <label for="vaikoPavarde">Vaiko Pavardė:</label>
+    <input type="text" id="vaikoPavarde" formControlName="vaikoPavarde">
+    <div *ngIf="registrationForm.get('vaikoPavarde')?.hasError('required') && registrationForm.get('vaikoPavarde')?.touched">
+      Pavardė yra privaloma.
+    </div>
+    <div *ngIf="registrationForm.get('vaikoPavarde')?.hasError('minlength') && registrationForm.get('vaikoPavarde')?.touched">
+      Pavardė turi būti ne trumpesnė nei 3 simboliai.
+    </div>
+    <div *ngIf="registrationForm.get('vaikoPavarde')?.hasError('maxlength') && registrationForm.get('vaikoPavarde')?.touched">
+      Pavardė turi būti ne ilgesnė nei 15 simbolių.
+    </div>
+    <div *ngIf="registrationForm.get('vaikoPavarde')?.hasError('pattern') && registrationForm.get('vaikoPavarde')?.touched">
+      Pavardė turi būti sudaryta tik iš raidžių.
+    </div>
+  </div>
+
+  <!-- Vaiko Gimimo Metai -->
+  <div class="form-group">
+    <label for="gimimoMetai">Vaiko Gimimo Metai:</label>
+    <input type="text" id="gimimoMetai" formControlName="gimimoMetai">
+    <div *ngIf="registrationForm.get('gimimoMetai')?.hasError('required') && registrationForm.get('gimimoMetai')?.touched">
+      Gimimo metai yra privalomi.
+    </div>
+    <div *ngIf="registrationForm.get('gimimoMetai')?.hasError('pattern') && registrationForm.get('gimimoMetai')?.touched">
+      Neteisingas metai.
+    </div>
+    <div *ngIf="registrationForm.get('gimimoMetai')?.hasError('validYear') && registrationForm.get('gimimoMetai')?.touched">
+      Metai negali būti mažesni nei 5 metai nuo dabartinių metų.
+    </div>
+  </div>
+
+  <!-- Vaiko Lytis -->
+  <div class="form-group">
+    <label for="lytis">Vaiko Lytis:</label>
+    <div class="radio-group">
+      <label>
+        <input type="radio" value="vyras" formControlName="lytis"> Vyras
+      </label>
+      <label>
+        <input type="radio" value="moteris" formControlName="lytis"> Moteris
+      </label>
+    </div>
+    <div *ngIf="registrationForm.get('lytis')?.hasError('required') && registrationForm.get('lytis')?.touched">
+      Lytis yra privaloma.
+    </div>
+  </div>
+
+  <!-- El. paštas -->
+  <div class="form-group">
+    <label for="elPastas">El. paštas:</label>
+    <input type="text" id="elPastas" formControlName="elPastas">
+    <div *ngIf="registrationForm.get('elPastas')?.hasError('required') && registrationForm.get('elPastas')?.touched">
+      El. paštas yra privalomas.
+    </div>
+    <div *ngIf="registrationForm.get('elPastas')?.hasError('email') && registrationForm.get('elPastas')?.touched">
+      Įveskite galiojantį el. pašto adresą.
+    </div>
+    <div *ngIf="registrationForm.get('elPastas')?.hasError('pattern') && registrationForm.get('elPastas')?.touched">
+      El. paštas turi būti galiojantis adresas.
+    </div>
+  </div>
+
+  <!-- Telefonas -->
+  <div class="form-group">
+    <label for="telefonas">Telefonas:</label>
+    <input type="text" id="telefonas" formControlName="telefonas" placeholder="+370XXXXXXXX">
+    <div *ngIf="registrationForm.get('telefonas')?.hasError('pattern') && registrationForm.get('telefonas')?.touched">
+      Įveskite telefono numerį formato: +370XXXXXXXX.
+    </div>
+    <div *ngIf="registrationForm.get('telefonas')?.hasError('minlength') && registrationForm.get('telefonas')?.touched">
+      Telefonas turi būti ne trumpesnis nei 10 simboliai.
+    </div>
+    <div *ngIf="registrationForm.get('telefonas')?.hasError('maxlength') && registrationForm.get('telefonas')?.touched">
+      Telefonas turi būti ne ilgesnis nei 12 simbolių.
+    </div>
+  </div>
+
+  <!-- Klasė -->
+  <div class="form-group">
+    <label for="klase">Klasė (nuo 5-os iki 12-os):</label>
+    <input type="text" id="klase" formControlName="klase">
+    <div *ngIf="registrationForm.get('klase')?.hasError('required') && registrationForm.get('klase')?.touched">
+      Klasė yra privaloma.
+    </div>
+    <div *ngIf="registrationForm.get('klase')?.hasError('pattern') && registrationForm.get('klase')?.touched">
+      Įveskite klasės numerį nuo 5 iki 12.
+    </div>
+  </div>
+
+  <!-- Registruotis Mygtukas -->
+  <button type="submit" [disabled]="!registrationForm.valid">Registruotis</button>
+</form>

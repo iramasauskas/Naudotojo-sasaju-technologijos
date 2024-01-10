@@ -1,0 +1,39 @@
+<div class="task-list-container">
+  <h2>Užduotys</h2>
+  <ul class="task-list">
+    <li *ngFor="let task of tasks" class="task-item">
+      <div class="task-content">
+        <ng-container *ngIf="editingTask === task; else viewMode">
+          <div class="edit-mode">
+            <input [(ngModel)]="task.text" placeholder="Užduoties tekstas">
+            <select [(ngModel)]="task.type">
+              <option value="Skubus">Skubus</option>
+              <option value="Rutininis">Rutininis</option>
+              <option value="Neskubus">Neskubus</option>
+              <option value="Ypač skubus">Ypač skubus</option>
+            </select>
+            <div class="buttons">
+              <button class="save" (click)="saveTask($event, task)">Išsaugoti</button>
+              <button class="cancel" (click)="cancelEdit()">Atšaukti</button>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #viewMode>
+          <div class="view-mode">
+            {{ task.text }} - {{ task.type }}
+          </div>
+        </ng-template>
+      </div>
+      <div class="actions">
+        <button class="edit" (click)="editTask(task)">Redaguoti</button>
+        <button class="delete" (click)="deleteTask(task)">Ištrinti</button>
+      </div>
+    </li>
+  </ul>
+   <app-task-statistics></app-task-statistics>
+  <ng-container *ngIf="taskService.tasksUpdated$ | async">
+  <!-- Atvaizduokite statistiką čia -->
+  </ng-container>
+</div>
+
+
